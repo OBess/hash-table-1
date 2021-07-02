@@ -1,9 +1,11 @@
 // C++
+#include <functional>
 #include <iostream>
+#include <utility>
 #include <vector>
 
 template <class Key, class Data, size_t Size = 30,
-          size_t HashFunc = [](const Key &key, const size_t &size)
+          std::function<const Key &key, const size_t &size> HashFunc = [](const Key &key, const size_t &size)
           { return key % size; }>
 class hash_table
 {
@@ -23,4 +25,5 @@ private:
    size_t m_size = 0;
 
    Data *table = nullptr;
+   std::function<const Key &key, const size_t &size> m_hashFunc = HashFunc;
 };
