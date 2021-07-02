@@ -6,7 +6,7 @@
 #include <numeric>
 
 // Custom
-// #include "include/hash_table.hpp"
+#include "include/hash_table.hpp"
 
 // ------------------------ TESTS
 
