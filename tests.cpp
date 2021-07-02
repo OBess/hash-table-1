@@ -1,9 +1,17 @@
-
+// Google tests
+#include <gtest/gtest.h>
 
 // C++
 #include <iostream>
 
+// Custom
+#include "include/hash_table.hpp"
+
+// ------------------------ TESTS
+
+
 int main(int argc, char const *argv[])
 {
-   return EXIT_SUCCESS;
+   ::testing::IntiGoogleTest(&argc, argv);
+   return RUN_ALL_TESTS();
 }
