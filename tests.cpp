@@ -159,19 +159,19 @@ TEST(HashTable, GetFailure)
        hash_excp_get);
 }
 
-// TEST(HashTable, Contains)
-// {
-//    hash_table<std::string, person, 30> ht;
-//    ht.set_hash_func(hash);
-//    ht["Dima"] = person("Dima", "0000000", "address");
-//    ht["Oleg"] = person("Oleg", "1111111", "address1");
-//    ht["Yura"] = person("Yura", "2222222", "address2");
-//    ht["Ihor"] = person("Ihor", "3333333", "address3");
-//    ht["Olya"] = person("Olya", "4444444", "address4");
+TEST(HashTable, Contains)
+{
+   hash_table<std::string, person, 30> ht;
+   ht.set_hash_func(hash);
+   ht["Dima"] = person("Dima", "0000000", "address");
+   ht["Oleg"] = person("Oleg", "1111111", "address1");
+   ht["Yura"] = person("Yura", "2222222", "address2");
+   ht["Ihor"] = person("Ihor", "3333333", "address3");
+   ht["Olya"] = person("Olya", "4444444", "address4");
 
-//    ASSERT_EQ(ht.contains("Ihor"), true);
-//    ASSERT_EQ(ht.contains("Vika"), false);
-// }
+   ASSERT_EQ(ht.contains("Ihor"), true);
+   ASSERT_EQ(ht.contains("Vika"), false);
+}
 
 // TEST(HashTable, CopyConstructor)
 // {
