@@ -21,8 +21,11 @@ public:
 
    // Copy constructor
    hash_table(const hash_table &other)
-       : m_capacity(other.m_capacity), m_size(other.m_size), m_table(m_table), m_hash_func(m_hash_func)
+       : m_capacity(other.m_capacity), m_size(other.m_size), m_hash_func(other.m_hash_func)
    {
+      m_table.reserve(m_capacity);
+      for (size_t i = 0; i < m_capacity; ++i)
+         m_table[i] = other.m_table[i];
    }
 
    // Logic
@@ -62,7 +65,7 @@ public:
    {
       size_t index = m_hash_func(key, m_capacity);
       return std::find_if(m_table[index].begin(), m_table[index].end(), [key](const auto &data)
-                          { return data.first == key; }) != m_table[index].end();
+                          { return (data.first == key); }) != m_table[index].end();
    }
 
    // Setter Func
