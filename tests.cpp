@@ -134,18 +134,30 @@ TEST(HashTable, Operator_Key_Get)
    ASSERT_EQ(ht5.get("Olya5").address, "address5");
 }
 
-// TEST(HashTable, GetFailure)
-// {
-//    hash_table<std::string, person, 30> ht;
-// ht.set_hash_func(hash);
-//    ht["Dima"] = person("Dima", "0000000", "address");
-//    ht["Oleg"] = person("Oleg", "1111111", "address1");
-//    ht["Yura"] = person("Yura", "2222222", "address2");
-//    ht["Ihor"] = person("Ihor", "3333333", "address3");
-//    ht["Olya"] = person("Olya", "4444444", "address4");
+TEST(HashTable, GetFailure)
+{
+   hash_table<std::string, person, 30> ht6;
+   ht6.set_hash_func(hash);
+   ht6["Dima6"] = person("Dima6", "0000000", "address");
+   ht6["Oleg6"] = person("Oleg6", "1111111", "address1");
+   ht6["Yura6"] = person("Yura6", "2222222", "address2");
+   ht6["Ihor6"] = person("Ihor6", "3333333", "address3");
+   ht6["Olya6"] = person("Olya6", "4444444", "address4");
 
-//    ASSERT_NO_THROW(ht.get("Vika"));
-// }
+   EXPECT_THROW(
+       {
+          try
+          {
+             ht6.get("Vika6");
+          }
+          catch (const hash_excp_get &e)
+          {
+             EXPECT_STREQ("Data is not exists!", e.what());
+             throw;
+          }
+       },
+       hash_excp_get);
+}
 
 // TEST(HashTable, Contains)
 // {
