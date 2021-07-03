@@ -89,7 +89,7 @@ public:
    {
       if (!contains(key))
          throw hash_excp_get();
-      return find(key);
+      return w_find_if(key);
    }
 
    // Operator[]
@@ -97,16 +97,15 @@ public:
    {
       if (!contains(key))
          push(key, Data());
-      return find(key);
+      return w_find_if(key);
    }
 
 private:
-   Data &find(const Key &key)
+   auto& w_find_if(const Key &key)
    {
       size_t index = m_hash_func(key, m_capacity);
       return std::find_if(m_table[index].begin(), m_table[index].end(), [key](const auto &data)
-                          { return data.first == key; })
-          ->second;
+                          { return data.first == key; })->second;
    }
 
    size_t m_capacity = Size;
