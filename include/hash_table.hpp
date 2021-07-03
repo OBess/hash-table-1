@@ -45,6 +45,19 @@ public:
       ++m_size;
    }
 
+   // Erase all data with the same key.
+   void pop(const Key &key) noexcept
+   {
+      if (contains(key))
+      {
+         size_t index = m_hash_func(key, m_capacity);
+         auto removed = std::remove_if(m_table[index].begin(), m_table[index].end(), [key](const auto &data)
+                                       { return data.first == key; });
+         m_table[index].erase(removed, m_table[index].end());
+         --m_size;
+      }
+   }
+
    bool contains(const Key &key) const noexcept
    {
       size_t index = m_hash_func(key, m_capacity);
