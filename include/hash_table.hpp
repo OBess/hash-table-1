@@ -28,6 +28,12 @@ public:
    // Logic
    void push(const Key &key, const Data &data)
    {
+      m_table[m_hash_func(key, m_capacity)].push_back({key, data});
+      ++m_size;
+   }
+
+   void push_double(const Key &key, const Data &data)
+   {
       if (contains(key))
       {
          size_t index = m_hash_func(key, m_capacity);
@@ -69,7 +75,8 @@ public:
       if (!contains(key))
          throw hash_excp_get();
       return std::find_if(m_table[index].begin(), m_table[index].end(), [key](const auto &data)
-                          { return data.first == key; })->second;
+                          { return data.first == key; })
+          ->second;
    }
 
 private:
