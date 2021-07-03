@@ -173,23 +173,23 @@ TEST(HashTable, Contains)
    ASSERT_EQ(ht.contains("Vika"), false);
 }
 
-// TEST(HashTable, CopyConstructor)
-// {
-//    hash_table<std::string, person, 30> ht;
-//    ht.set_hash_func(hash);
-//    ht.push("Dima", person("Dima", "0000000", "address"));
-//    ht.push("Oleg", person("Oleg", "1111111", "address1"));
-//    ht.push("Yura", person("Yura", "2222222", "address2"));
+TEST(HashTable, CopyConstructor)
+{
+   hash_table<std::string, person, 30> ht;
+   ht.set_hash_func(hash);
+   ht.push("Dima", person("Dima", "0000000", "address"));
+   ht.push("Oleg", person("Oleg", "1111111", "address1"));
+   ht.push("Yura", person("Yura", "2222222", "address2"));
 
-//    ASSERT_EQ(ht.get("Dima").address, "address");
-//    ASSERT_EQ(ht.get("Oleg").phone, "1111111");
-//    ASSERT_EQ(ht.get("Yura").name, "Yura");
+   ASSERT_EQ(ht.get("Dima").address, "address");
+   ASSERT_EQ(ht.get("Oleg").phone, "1111111");
+   ASSERT_EQ(ht.get("Yura").name, "Yura");
 
-//    hash_table<std::string, person, 30> ht1(ht);
-//    ASSERT_EQ(ht1.get("Dima").address, "address");
-//    ASSERT_EQ(ht1.get("Oleg").phone, "1111111");
-//    ASSERT_EQ(ht1.get("Yura").name, "Yura");
-// }
+   hash_table<std::string, person, 30> ht1(ht);
+   ASSERT_EQ(ht1.get("Dima").address, "address");
+   ASSERT_EQ(ht1.get("Oleg").phone, "1111111");
+   ASSERT_EQ(ht1.get("Yura").name, "Yura");
+}
 
 int main(int argc, char **argv)
 {
