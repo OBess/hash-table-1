@@ -56,23 +56,27 @@ TEST(HashTable, Push)
    ASSERT_EQ(ht.size(), 3);
 }
 
-// TEST(HashTable, Pop)
-// {
-//    hash_table<std::string, person, 30> ht;
-// ht.set_hash_func(hash);
-//    ht.push("Dima", person("Dima", "0000000", "address"));
-//    ht.push("Oleg", person("Oleg", "1111111", "address1"));
-//    ht.push("Yura", person("Yura", "2222222", "address2"));
-//    ht.push("Ihor", person("Ihor", "3333333", "address3"));
-//    ht.push("Olya", person("Olya", "4444444", "address4"));
+TEST(HashTable, Pop)
+{
+   hash_table<std::string, person, 30> ht;
+   ht.set_hash_func(hash);
+   ht.push("Dima", person("Dima", "0000000", "address"));
+   ht.push("Oleg", person("Oleg", "1111111", "address1"));
+   ht.push("Yura", person("Yura", "2222222", "address2"));
+   ht.push("Ihor", person("Ihor", "3333333", "address3"));
+   ht.push("Olya", person("Olya", "4444444", "address4"));
 
-//    ASSERT_EQ(ht.size(), 5);
+   ASSERT_EQ(ht.size(), 5);
+   ASSERT_EQ(ht.contains("Dima"), true);
+   ASSERT_EQ(ht.contains("Oleg"), true);
 
-//    ht.pop("Dima");
-//    ht.pop("Oleg");
+   ht.pop("Dima");
+   ht.pop("Oleg");
 
-//    ASSERT_EQ(ht.size(), 2);
-// }
+   ASSERT_EQ(ht.size(), 3);
+   ASSERT_EQ(ht.contains("Dima"), false);
+   ASSERT_EQ(ht.contains("Oleg"), false);
+}
 
 TEST(HashTable, Double)
 {
