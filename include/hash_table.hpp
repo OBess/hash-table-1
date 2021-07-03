@@ -65,7 +65,7 @@ public:
                           { return data.first == key; }) != m_table[index].end();
    }
 
-   // Setter
+   // Setter Func
    void set_hash_func(const std::function<size_t(const Key &key, const size_t &size)> &func)
    {
       m_hash_func = func;
@@ -84,15 +84,28 @@ public:
 
    Data &get(const Key &key)
    {
-      size_t index = m_hash_func(key, m_capacity);
       if (!contains(key))
          throw hash_excp_get();
+      return find(key);
+   }
+
+   // Operator[]
+   Data &operator[](const Key &key)
+   {
+      if (!contains(key))
+         push(key, Data());
+      return find(key);
+   }
+
+private:
+   Data &find(const Key &key)
+   {
+      size_t index = m_hash_func(key, m_capacity);
       return std::find_if(m_table[index].begin(), m_table[index].end(), [key](const auto &data)
                           { return data.first == key; })
           ->second;
    }
 
-private:
    size_t m_capacity = Size;
    size_t m_size = 0;
 
